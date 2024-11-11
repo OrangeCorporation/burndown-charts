@@ -1,0 +1,14 @@
+name: Automatic sprint burndown chart
+on:
+  push:
+  schedule:
+    - cron: '10 0 * * *'
+jobs:
+  plot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: gh run download -n sprint_burndown_chart -R orangecorporation/studybuds
+      - run: git add plot.svg && git commit -m 'update burndown chart' && git push
