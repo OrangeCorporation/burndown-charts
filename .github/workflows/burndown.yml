@@ -13,4 +13,4 @@ jobs:
       - run: gh run download -n sprint_burndown_chart -R orangecorporation/studybuds
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: git add plot.svg && git commit -m 'update burndown chart' && git push
+      - run: git config --global user.email "orangecorporation@github.com" && git config --global user.name "OrangeCorporationBot" && git add plot.svg && git commit -m 'update burndown chart' && git push
