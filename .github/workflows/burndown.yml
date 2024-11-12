@@ -1,6 +1,6 @@
 name: Automatic sprint burndown chart
 on:
-  push:
+  workflow_dispatch:
   schedule:
     - cron: '10 0 * * *'
 jobs:
@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: gh run download -n sprint_burndown_chart -R orangecorporation/studybuds
+      - run: rm -rf plot.svg && gh run download -n sprint_burndown_chart -R orangecorporation/studybuds
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: git config --global user.email "orangecorporation@github.com" && git config --global user.name "OrangeCorporationBot" && git add plot.svg && git commit -m 'update burndown chart' && git push
